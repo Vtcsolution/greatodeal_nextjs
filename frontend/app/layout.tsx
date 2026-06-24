@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     'rating': 'general',
     'revisit-after': '3 days',
     'language': 'English',
-    'google-site-verification': 'your-google-verification-code',
+    'google-site-verification': 'google88add5fb276729b4',
   },
 };
 
@@ -231,7 +231,8 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': 'https://greatodeal.com/#localbusiness',
-  name: 'Greatodeal',
+  name: 'Greatodeal AI Automation Solutions',
+  alternateName: 'Greatodeal',
   image: 'https://greatodeal.com/images/logo.png',
   url: 'https://greatodeal.com',
   telephone: '+92-301-1060841',
@@ -239,26 +240,41 @@ const localBusinessSchema = {
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '16 Jail Rd, Shadman 2, Gulberg',
+    streetAddress: '16 Jail Rd, Shadman II, Shadman 2, Shadman',
     addressLocality: 'Lahore',
     addressRegion: 'Punjab',
     postalCode: '54000',
     addressCountry: 'PK',
   },
   geo: { '@type': 'GeoCoordinates', latitude: 31.5497, longitude: 74.3436 },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '09:00',
-    closes: '18:00',
-  },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '50' },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+  ],
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', ratingCount: '6', bestRating: '5', worstRating: '1' },
+  hasMap: 'https://maps.google.com/?cid=13357701166578108019',
+  additionalType: 'https://schema.org/SoftwareApplication',
+  serviceType: ['AI Automation', 'Web Development', 'Mobile App Development', 'SaaS Platform Development', 'Custom Software Development', 'AI Chatbot Development', 'Cloud & DevOps'],
+  areaServed: [
+    { '@type': 'Country', name: 'Pakistan' },
+    { '@type': 'Country', name: 'United States' },
+    { '@type': 'Country', name: 'United Kingdom' },
+    { '@type': 'Country', name: 'United Arab Emirates' },
+    { '@type': 'Country', name: 'Netherlands' },
+    { '@type': 'Country', name: 'Saudi Arabia' },
+    { '@type': 'Country', name: 'Germany' },
+  ],
   sameAs: [
     'https://www.facebook.com/greatodealofficial',
     'https://www.linkedin.com/company/greatodeal',
     'https://www.instagram.com/greatodeal',
     'https://www.youtube.com/@GreatodealAI',
     'https://clutch.co/profile/greatodeal',
+    'https://g.co/kgs/13357701166578108019',
   ],
 };
 

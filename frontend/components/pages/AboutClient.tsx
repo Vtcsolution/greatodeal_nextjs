@@ -135,7 +135,7 @@ export default function AboutClient() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               { name: 'Umar Farooq', role: 'CEO & Global Founder', img: '/images/umar_image.png', desc: 'Umar Farooq is the Founder & CEO of Greatodeal. Based in Pakistan, he leads global strategy, AI innovation, marketing, and cross-boundary business relations, delivering impactful innovation worldwide.' },
-              { name: 'Zia Raza', role: 'Co-Founder & Chief Technology Officer (CTO)', img: '/images/CEO_ZIA.png', desc: 'Zia Raza is Co-Founder and CTO of Greatodeal. An AI & Automation specialist, he leads innovation in SaaS platforms and enterprise software, ensuring each client solution drives real business systems during digital transformation.' },
+              { name: 'Zia Rana', role: 'Co-Founder & Chief Technology Officer (CTO)', img: '/images/CEO_ZIA.png', desc: 'Zia Rana is Co-Founder and CTO of Greatodeal. An AI & Automation specialist, he leads innovation in SaaS platforms and enterprise software, ensuring each client solution drives real business systems during digital transformation.' },
             ].map((person, i) => (
               <motion.div key={i} className="group bg-[#111827] rounded-2xl border border-gray-700/50 overflow-hidden hover:border-[#6EE7B7]/30 transition-all duration-500" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.6, ease }}>
                 <div className="h-72 overflow-hidden"><img src={person.img} alt={person.name} className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700" /></div>

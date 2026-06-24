@@ -353,9 +353,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-[#090909] text-[#E5E7EB]" suppressHydrationWarning>
         <LayoutWrapper>{children}</LayoutWrapper>
 
-        {/* Google Analytics */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-35XV4Q1GQQ" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
+        {/* Google Analytics — lazy loaded */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-35XV4Q1GQQ" strategy="lazyOnload" />
+        <Script id="google-analytics" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());

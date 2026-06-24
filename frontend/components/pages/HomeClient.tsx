@@ -126,7 +126,12 @@ export default function HomeClient() {
   const [activeService, setActiveService] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => setActiveTestimonial(p => (p + 1) % testimonials.length), 5500);
@@ -146,9 +151,11 @@ export default function HomeClient() {
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover opacity-[0.15] hidden sm:block">
-            <source src="/images/video_home.webm" type="video/webm" />
-          </video>
+          {isDesktop && (
+            <video autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover opacity-[0.15]">
+              <source src="/images/video_home.webm" type="video/webm" />
+            </video>
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-[#090909]/60 via-transparent to-[#090909]" />
         </div>
 
@@ -261,7 +268,7 @@ export default function HomeClient() {
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4">
             {industries.map((ind, i) => {
               const IIcon = ind.icon;
-              return (<motion.div key={i} className="group bg-white/[0.03] p-4 sm:p-5 rounded-2xl border border-white/[0.05] text-center hover:border-[#6EE7B7]/20 transition-all duration-700 cursor-default" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.03, duration: 0.5, ease }} whileHover={{ y: -4, transition: { duration: 0.4 } }}><div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/[0.04] flex items-center justify-center mx-auto mb-3 group-hover:bg-[#6EE7B7]/[0.06] transition-all duration-700"><IIcon className={`w-6 h-6 ${ind.color}`} /></div><div className="text-xs sm:text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-700 leading-tight">{ind.name}</div></motion.div>);
+              return (<div key={i} className="group bg-white/[0.03] p-4 sm:p-5 rounded-2xl border border-white/[0.05] text-center hover:border-[#6EE7B7]/20 transition-all duration-500 cursor-default"><div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/[0.04] flex items-center justify-center mx-auto mb-3 group-hover:bg-[#6EE7B7]/[0.06] transition-all duration-500"><IIcon className={`w-6 h-6 ${ind.color}`} /></div><div className="text-xs sm:text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-500 leading-tight">{ind.name}</div></div>);
             })}
           </div>
         </div>
@@ -275,7 +282,7 @@ export default function HomeClient() {
           </RevealText>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {solutions.map((sol, i) => (
-              <motion.span key={i} className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm sm:text-base text-white/80 font-medium hover:border-[#6EE7B7]/30 hover:text-[#6EE7B7] transition-all duration-500 cursor-default" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03, duration: 0.4 }}>{sol}</motion.span>
+              <span key={i} className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm sm:text-base text-white/80 font-medium hover:border-[#6EE7B7]/30 hover:text-[#6EE7B7] transition-all duration-500 cursor-default">{sol}</span>
             ))}
           </div>
         </div>
@@ -328,10 +335,13 @@ export default function HomeClient() {
             <motion.div className="relative group" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
               <div className="bg-white/[0.02] p-2 sm:p-3 rounded-2xl border border-white/[0.06] hover:border-[#6EE7B7]/20 transition-all duration-700 overflow-hidden relative">
                 <div className="aspect-video rounded-xl overflow-hidden relative bg-black">
-                  <video ref={videoRef} className="w-full h-full object-cover hidden sm:block" loop muted playsInline autoPlay preload="none">
-                    <source src="/images/video_home.webm" type="video/webm" />
-                  </video>
-                  <div className="w-full h-full bg-gradient-to-br from-[#6EE7B7]/10 to-[#3B82F6]/10 sm:hidden" />
+                  {isDesktop ? (
+                    <video ref={videoRef} className="w-full h-full object-cover" loop muted playsInline autoPlay preload="none">
+                      <source src="/images/video_home.webm" type="video/webm" />
+                    </video>
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#6EE7B7]/10 to-[#3B82F6]/10" />
+                  )}
                   <div className={`absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-opacity duration-500 cursor-pointer ${isVideoPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`} onClick={handlePlayVideo}>
                     <div className="w-16 h-16 bg-[#6EE7B7] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(110,231,183,0.3)] hover:scale-110 transition-transform duration-500">
                       <Play className="w-7 h-7 text-[#090909] ml-0.5" />

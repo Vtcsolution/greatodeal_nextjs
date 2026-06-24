@@ -114,6 +114,9 @@ function TypingText({ words }: { words: string[] }) {
 }
 
 function SplitText({ text, delay = 0 }: { text: string; delay?: number }) {
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    return <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay }}>{text}</motion.span>;
+  }
   return (<span>{text.split(' ').map((word, i) => (<span key={i} className="inline-block overflow-hidden"><motion.span className="inline-block" initial={{ y: '100%', opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: delay + i * 0.04, ease: [0.33, 1, 0.68, 1] }}>{word}&nbsp;</motion.span></span>))}</span>);
 }
 
@@ -325,9 +328,10 @@ export default function HomeClient() {
             <motion.div className="relative group" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
               <div className="bg-white/[0.02] p-2 sm:p-3 rounded-2xl border border-white/[0.06] hover:border-[#6EE7B7]/20 transition-all duration-700 overflow-hidden relative">
                 <div className="aspect-video rounded-xl overflow-hidden relative bg-black">
-                  <video ref={videoRef} className="w-full h-full object-cover" loop muted playsInline autoPlay>
+                  <video ref={videoRef} className="w-full h-full object-cover hidden sm:block" loop muted playsInline autoPlay preload="none">
                     <source src="/images/video_home.webm" type="video/webm" />
                   </video>
+                  <div className="w-full h-full bg-gradient-to-br from-[#6EE7B7]/10 to-[#3B82F6]/10 sm:hidden" />
                   <div className={`absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-opacity duration-500 cursor-pointer ${isVideoPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`} onClick={handlePlayVideo}>
                     <div className="w-16 h-16 bg-[#6EE7B7] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(110,231,183,0.3)] hover:scale-110 transition-transform duration-500">
                       <Play className="w-7 h-7 text-[#090909] ml-0.5" />

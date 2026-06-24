@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
@@ -11,13 +12,18 @@ const CustomCursor = dynamic(() => import('./ui/CustomCursor'), { ssr: false });
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith('/admin');
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768 && !window.matchMedia('(pointer: coarse)').matches);
+  }, []);
 
   return (
     <>
       {!isAdmin && (
         <>
-          <ParticleBackground />
-          <CustomCursor />
+          {isDesktop && <ParticleBackground />}
+          {isDesktop && <CustomCursor />}
           <Navbar />
         </>
       )}

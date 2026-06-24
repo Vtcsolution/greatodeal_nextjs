@@ -1,0 +1,45 @@
+import type { Metadata } from 'next';
+import BlogDetailClient from '@/components/pages/BlogDetailClient';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/blogs/${params.id}`, { next: { revalidate: 3600 } });
+    const data = await res.json();
+    if (data.success && data.data) {
+      const blog = data.data;
+      const imageUrl = blog.image ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/uploads/${blog.image}` : 'https://greatodeal.com/images/logo.png';
+      return {
+        title: `${blog.title} | Greatodeal Blog`,
+        description: blog.excerpt,
+        keywords: [blog.category, blog.author, 'Greatodeal blog', 'technology insights', 'AI', 'software development', 'tech articles'],
+        openGraph: {
+          title: blog.title,
+          description: blog.excerpt,
+          type: 'article',
+          publishedTime: blog.date,
+          authors: [blog.author],
+          tags: [blog.category],
+          url: `https://greatodeal.com/blog/${params.id}`,
+          images: [{ url: imageUrl, width: 1200, height: 630, alt: blog.title }],
+          siteName: 'Greatodeal',
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: blog.title,
+          description: blog.excerpt,
+          images: [imageUrl],
+        },
+        alternates: { canonical: `https://greatodeal.com/blog/${params.id}` },
+      };
+    }
+  } catch { /* fallback below */ }
+  return {
+    title: 'Blog Post | Greatodeal',
+    description: 'Read the latest technology insights from Greatodeal.',
+    twitter: { card: 'summary', images: ['https://greatodeal.com/images/logo.png'] },
+  };
+}
+
+export default function BlogDetailPage({ params }: { params: { id: string } }) {
+  return <BlogDetailClient id={params.id} />;
+}

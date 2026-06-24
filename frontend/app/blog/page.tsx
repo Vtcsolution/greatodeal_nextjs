@@ -1,0 +1,25 @@
+import type { Metadata } from 'next';
+import BlogListClient from '@/components/pages/BlogListClient';
+
+export const metadata: Metadata = {
+  title: 'Blog & Insights | AI, Software Development, Technology Trends | Greatodeal',
+  description: 'Read Greatodeal\'s tech blog: expert insights on AI, machine learning, software development, SaaS, cloud computing, UI/UX, blockchain, and digital transformation trends.',
+  keywords: ['tech blog', 'AI insights', 'software development blog', 'machine learning articles', 'SaaS trends', 'cloud computing', 'UI/UX design blog', 'digital transformation', 'technology trends', 'developer blog', 'Greatodeal blog'],
+  openGraph: {
+    title: 'Blog & Insights | AI, Software Development, Technology Trends | Greatodeal',
+    description: 'Read Greatodeal\'s tech blog: expert insights on AI, machine learning, software development, SaaS, cloud computing, and digital transformation trends.',
+    url: 'https://greatodeal.com/blog',
+    images: [{ url: 'https://greatodeal.com/images/logo.png', width: 512, height: 512, alt: 'Greatodeal Blog & Insights' }],
+  },
+  twitter: {
+    card: 'summary',
+    images: ['https://greatodeal.com/images/logo.png'],
+  },
+  alternates: {
+    canonical: 'https://greatodeal.com/blog',
+  },
+};
+
+export default function Page() {
+  return <BlogListClient />;
+}

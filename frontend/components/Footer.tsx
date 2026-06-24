@@ -1,0 +1,121 @@
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Facebook, Linkedin, Instagram, Youtube, MapPin, Mail, Github, Star } from 'lucide-react';
+
+const footerLinks = {
+  company: [
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'How We Work', path: '/how-we-work' },
+    { name: 'Blogs', path: '/blog' },
+    { name: 'Privacy Policy', path: '/privacy-policy' },
+  ],
+  services: [
+    { name: 'Machine Learning & AI Automation', path: '/services/machine-learning-ai' },
+    { name: 'AI & Automation (SaaS)', path: '/services/ai-saas-platform' },
+    { name: 'AI Mobile App', path: '/services/mobile-apps' },
+    { name: 'AI Custom Software', path: '/services/custom-software' },
+    { name: 'AI SaaS Platform', path: '/services/ai-saas-platform' },
+  ],
+};
+
+const socials = [
+  { Icon: Facebook, href: 'https://www.facebook.com/greatodealofficial', label: 'Facebook' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/greatodeal', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/greatodeal', label: 'Instagram' },
+  { Icon: Youtube, href: 'https://www.youtube.com/@GreatodealAI', label: 'YouTube' },
+  { Icon: Github, href: 'https://github.com/Ranazia943', label: 'GitHub' },
+  { Icon: Star, href: 'https://clutch.co/profile/greatodeal', label: 'Clutch' },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#060606] text-white/90" itemScope itemType="https://schema.org/Organization">
+      <div className="container max-w-7xl py-14 sm:py-16 px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8">
+          {/* Brand */}
+          <div className="space-y-5">
+            <Link href="/">
+              <Image src="/images/logo.png" alt="Greatodeal Logo" width={140} height={50} className="h-10 sm:h-12 w-auto object-contain" />
+            </Link>
+            <p className="text-white/70 text-base leading-relaxed" itemProp="description">
+              Empowering businesses with innovative software solutions and digital transformation services.{' '}
+              <span className="text-[#6EE7B7]">greatodeal.com</span>
+            </p>
+            <div className="flex space-x-2">
+              {socials.map(({ Icon, href, label }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                  className="text-white/40 hover:text-[#6EE7B7] p-2.5 rounded-xl transition-all hover:bg-white/[0.04]">
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Company */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold text-white">Company</h3>
+            <ul className="space-y-3">
+              {footerLinks.company.map(({ name, path }) => (
+                <li key={path}>
+                  <Link href={path} className="text-white/70 hover:text-[#6EE7B7] transition-colors duration-300 text-base">
+                    {name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold text-white">AI Services</h3>
+            <ul className="space-y-3">
+              {footerLinks.services.map(({ name, path }, i) => (
+                <li key={i}>
+                  <Link href={path} className="text-white/70 hover:text-[#6EE7B7] transition-colors duration-300 text-base">
+                    {name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold text-white">Contact</h3>
+            <div className="flex items-center gap-3 p-3 bg-white/[0.03] rounded-xl">
+              <Mail className="w-5 h-5 text-white/40 flex-shrink-0" />
+              <a href="mailto:sales@greatodeal.com" className="text-white/70 hover:text-[#6EE7B7] transition-colors text-base" itemProp="email">
+                sales@greatodeal.com
+              </a>
+            </div>
+            <div className="p-4 bg-white/[0.02] rounded-xl" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+              <div className="flex items-center gap-2 text-[#6EE7B7] font-medium text-base mb-2">
+                <span className="w-1.5 h-1.5 bg-[#6EE7B7] rounded-full" />
+                PK Development Center
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" />
+                <div className="text-base text-white/80">
+                  <span itemProp="streetAddress">Ziafare Tower Shadman 2, Gulberg</span><br />
+                  <span itemProp="addressLocality">Lahore</span>, <span itemProp="addressCountry">Pakistan</span>
+                </div>
+              </div>
+              <a href="tel:+923011060841" className="text-[#6EE7B7] hover:text-[#5CD7A5] text-base mt-3 block font-medium" itemProp="telephone">
+                +92 301 1060841
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-white/[0.06]">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <span className="text-white/40 text-sm sm:text-base">&copy; 2026 Greatodeal Software. All rights reserved.</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

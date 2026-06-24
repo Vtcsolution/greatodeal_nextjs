@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-dark: #121212;
+  --brand-darker: #0F1419;
+  --brand-card: #1E1E1E;
+  --brand-border: #374151;
+  --brand-green: #6EE7B7;
+  --brand-blue: #3B82F6;
+  --brand-blue-light: #93C5FD;
+  --brand-text: #E5E7EB;
+  --brand-muted: #9CA3AF;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+@media (max-width: 640px) {
+  html { font-size: 16px; }
+}
+
+body {
+  background: var(--brand-dark);
+  color: var(--brand-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brand-dark); }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-green); }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+.animate-float1 { animation: float1 3s ease-in-out infinite; }
+.animate-float2 { animation: float2 4s ease-in-out infinite; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(to right, #6EE7B7, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section padding */
+.section-padding { padding: 5rem 1rem; }
+.container-max { max-width: 72rem; margin: 0 auto; }
+
+/* ═══ Global outline button style ═══ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: 1.5px solid #6EE7B7;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: #6EE7B7;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: rgba(110, 231, 183, 0.08);
+  box-shadow: 0 0 30px rgba(110, 231, 183, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-primary-sm {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ═══ AI Chatbot content ═══ */
+.chatbot-content p { color: rgba(255, 255, 255, 0.8) !important; margin-bottom: 0.5rem; }
+.chatbot-content p:last-child { margin-bottom: 0; }
+.chatbot-content strong, .chatbot-content b { color: #fff !important; font-weight: 600; }
+.chatbot-content a { color: #6EE7B7 !important; text-decoration: underline; }
+.chatbot-content ul, .chatbot-content ol { padding-left: 1.25rem; margin: 0.5rem 0; }
+.chatbot-content li { color: rgba(255, 255, 255, 0.75) !important; margin-bottom: 0.25rem; }
+.chatbot-content li::marker { color: #6EE7B7 !important; }
+.chatbot-content code { color: #6EE7B7 !important; background: rgba(255,255,255,0.06); padding: 0.1rem 0.3rem; border-radius: 0.25rem; font-size: 0.85em; }
+.chatbot-content h1, .chatbot-content h2, .chatbot-content h3, .chatbot-content h4 { color: #fff !important; font-weight: 700; margin: 0.75rem 0 0.5rem; }
+.chatbot-content blockquote { border-left: 2px solid #6EE7B7; padding-left: 0.75rem; color: rgba(255,255,255,0.6) !important; }
+
+/* ═══ Blog content — force dark theme on all HTML content ═══ */
+.prose div,
+.prose section,
+.prose article,
+.prose aside,
+.prose figure,
+.prose details,
+.prose summary,
+.prose fieldset {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: inherit !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+}
+
+.prose thead,
+.prose thead tr,
+.prose thead th {
+  background: rgba(110, 231, 183, 0.1) !important;
+  color: #6EE7B7 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.prose th,
+.prose td {
+  padding: 1rem 1.25rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  background: transparent !important;
+  font-size: 1rem !important;
+}
+
+.prose tbody tr {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.prose tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.prose ul,
+.prose ol {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.prose li {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose li::marker {
+  color: #6EE7B7 !important;
+}
+
+.prose p {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 1.1rem !important;
+  line-height: 1.9 !important;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.prose h2 {
+  font-size: 1.75rem !important;
+  margin-top: 3rem !important;
+  margin-bottom: 1.25rem !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.prose h3 {
+  font-size: 1.4rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose h4 {
+  font-size: 1.2rem !important;
+  margin-top: 2rem !important;
+}
+
+.prose strong, .prose b {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.prose a {
+  color: #6EE7B7 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.prose a:hover {
+  text-decoration: underline !important;
+}
+
+.prose blockquote {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-left: 3px solid #6EE7B7 !important;
+  border-radius: 0 1rem 1rem 0 !important;
+  padding: 1.25rem 1.5rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-style: normal !important;
+}
+
+.prose blockquote p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.prose code {
+  color: #6EE7B7 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  padding: 0.15rem 0.4rem !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.95rem !important;
+}
+
+.prose pre {
+  background: #0D0D0D !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+}
+
+.prose pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.prose img {
+  border-radius: 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.prose hr {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* Override any inline white/light backgrounds in blog HTML */
+.prose [style*="background"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.prose [style*="color: #"] {
+  color: inherit !important;
+}
+
+.prose [style*="color: rgb"] {
+  color: inherit !important;
+}
+
+.prose [style*="background-color: #f"],
+.prose [style*="background-color: #e"],
+.prose [style*="background-color: #d"],
+.prose [style*="background-color: #c"],
+.prose [style*="background-color: #b"],
+.prose [style*="background-color: #a"],
+.prose [style*="background-color: #9"],
+.prose [style*="background-color: #8"],
+.prose [style*="background-color: #7"],
+.prose [style*="background-color: white"],
+.prose [style*="background-color: #fff"],
+.prose [style*="background: #f"],
+.prose [style*="background: #e"],
+.prose [style*="background: #d"],
+.prose [style*="background: white"],
+.prose [style*="background: #fff"],
+.prose [style*="background-color: rgb(2"],
+.prose [style*="background-color: rgb(1"] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}

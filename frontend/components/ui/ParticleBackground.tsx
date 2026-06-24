@@ -7,6 +7,7 @@ import * as THREE from 'three';
 function Particles({ count = 800 }: { count?: number }) {
   const mesh = useRef<THREE.Points>(null!);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const startTime = useRef(performance.now());
 
   const [positions, sizes] = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -22,9 +23,9 @@ function Particles({ count = 800 }: { count?: number }) {
 
   const originalPositions = useMemo(() => new Float32Array(positions), [positions]);
 
-  useFrame(({ clock, pointer }) => {
+  useFrame(({ pointer }) => {
     if (!mesh.current) return;
-    const t = clock.getElapsedTime();
+    const t = (performance.now() - startTime.current) / 1000;
 
     mouseRef.current.x += (pointer.x * 2 - mouseRef.current.x) * 0.02;
     mouseRef.current.y += (pointer.y * 2 - mouseRef.current.y) * 0.02;
@@ -62,10 +63,11 @@ function Particles({ count = 800 }: { count?: number }) {
 
 function FloatingOrbs() {
   const group = useRef<THREE.Group>(null!);
+  const startTime = useRef(performance.now());
 
-  useFrame(({ clock }) => {
+  useFrame(() => {
     if (!group.current) return;
-    const t = clock.getElapsedTime();
+    const t = (performance.now() - startTime.current) / 1000;
     group.current.children.forEach((child, i) => {
       child.position.y = Math.sin(t * 0.4 + i * 1.5) * 2;
       child.position.x = Math.cos(t * 0.3 + i * 1.2) * 3;

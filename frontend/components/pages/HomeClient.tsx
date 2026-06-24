@@ -143,7 +143,7 @@ export default function HomeClient() {
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover opacity-[0.15]">
+          <video autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover opacity-[0.15] hidden sm:block">
             <source src="/images/video_home.webm" type="video/webm" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-[#090909]/60 via-transparent to-[#090909]" />

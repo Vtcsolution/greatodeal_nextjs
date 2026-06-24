@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -85,6 +85,14 @@ function FloatingOrbs() {
 }
 
 export default function ParticleBackground() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  if (isMobile) return null;
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
       <Canvas
@@ -93,7 +101,7 @@ export default function ParticleBackground() {
         gl={{ antialias: false, alpha: true }}
         style={{ background: 'transparent' }}
       >
-        <Particles count={600} />
+        <Particles count={400} />
         <FloatingOrbs />
       </Canvas>
     </div>
